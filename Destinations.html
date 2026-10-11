@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tourist Destinations | Explore Lesotho</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .navbar {
+            background: #00209F !important;
+            padding: 15px 0;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar .nav-link {
+            color: #ffffff !important;
+            margin-left: 12px;
+            transition: 0.3s;
+        }
+
+        .navbar .nav-link:hover,
+        .navbar .nav-link.active {
+            color: #009543 !important;
+        }
+
+        .hero {
+            background: linear-gradient(
+                135deg,
+                rgba(0, 32, 159, 0.88),
+                rgba(0, 149, 67, 0.78)
+            ), url("Thaba busiu.jpg");
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            text-align: center;
+            padding: 75px 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.7;
+            color: #ffffff;
+        }
+
+        main {
+            padding-top: 45px;
+            padding-bottom: 60px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: #00209F;
+            margin-bottom: 12px;
+        }
+
+        .intro-text {
+            color: #333333;
+            margin-bottom: 30px;
+        }
+
+        #search {
+            padding: 13px;
+            border: 2px solid #00209F;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        #search:focus {
+            border-color: #009543;
+            box-shadow: 0 0 0 3px rgba(0, 149, 67, 0.15);
+        }
+
+        .filter-btn {
+            border-radius: 25px;
+            padding: 9px 23px;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background-color: #009543;
+            border-color: #009543;
+            color: #ffffff;
+        }
+
+        .btn-success:hover {
+            background-color: #006b30;
+            border-color: #006b30;
+        }
+
+        .btn-outline-success {
+            color: #009543;
+            border-color: #009543;
+        }
+
+        .btn-outline-success:hover {
+            background-color: #009543;
+            border-color: #009543;
+            color: #ffffff;
+        }
+
+        .place {
+            margin-bottom: 25px;
+        }
+
+        .destination-card {
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 100%;
+            background: #ffffff;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+            border-bottom: 5px solid #009543;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+
+        .destination-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .card-body {
+            padding: 22px;
+            background: #ffffff;
+        }
+
+        .card-body h2 {
+            color: #00209F;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .card-body p {
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        .category-label {
+            display: inline-block;
+            background: #e5edff;
+            color: #00209F;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        footer {
+            background: #000000;
+            color: #ffffff;
+            padding: 22px;
+            text-align: center;
+            letter-spacing: 2px;
+            font-weight: bold;
+            border-top: 5px solid #009543;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 55px 15px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .destination-card img {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu"
+                aria-controls="menu"
+                aria-expanded="false"
+                aria-label="Open navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="destinations.html">Destinations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gallery.html">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>Discover the Beauty of Lesotho</h1>
+    <p>
+        Explore breathtaking mountains, beautiful waterfalls,
+        peaceful dams and the rich heritage of the Basotho people.
+    </p>
+</section>
+
+<main class="container">
+    <div class="text-center mb-4">
+        <h2 class="section-title">Our Tourist Destinations</h2>
+        <p class="intro-text">
+            Find your next adventure in the Kingdom in the Sky.
+        </p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <label for="search" class="form-label fw-bold">
+                Search destinations
+            </label>
+            <input id="search"
+                   class="form-control mb-4"
+                   type="search"
+                   placeholder="Search by destination name...">
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center gap-2 flex-wrap mb-5">
+        <button class="btn btn-success filter-btn" data-filter="all">
+            All
+        </button>
+        <button class="btn btn-outline-success filter-btn" data-filter="nature">
+            Nature
+        </button>
+        <button class="btn btn-outline-success filter-btn" data-filter="culture">
+            Culture
+        </button>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-4 place"
+             data-category="nature"
+             data-name="maletsunyane falls waterfall semonkong">
+            <article class="card destination-card">
+                <img src="maletsunyane.jpg"
+                     alt="Maletsunyane Falls in Lesotho">
+                <div class="card-body">
+                    <span class="category-label">NATURE</span>
+                    <h2 class="h4">Maletsunyane Falls</h2>
+                    <p>
+                        Discover one of Lesotho's famous waterfalls,
+                        surrounded by beautiful mountain scenery near Semonkong.
+                    </p>
+                </div>
+            </article>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 place"
+             data-category="nature"
+             data-name="katse dam lake water mountains">
+            <article class="card destination-card">
+                <img src="Katse dam.jpg"
+                     alt="Katse Dam surrounded by mountains">
+                <div class="card-body">
+                    <span class="category-label">NATURE</span>
+                    <h2 class="h4">Katse Dam</h2>
+                    <p>
+                        Enjoy the impressive reservoir, fresh mountain air
+                        and stunning views of the Lesotho Highlands.
+                    </p>
+                </div>
+            </article>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 place"
+             data-category="culture"
+             data-name="thaba bosiu culture history heritage">
+            <article class="card destination-card">
+                <img src="Thaba busiu.jpg"
+                     alt="Thaba Bosiu historical site">
+                <div class="card-body">
+                    <span class="category-label">CULTURE & HISTORY</span>
+                    <h2 class="h4">Thaba Bosiu</h2>
+                    <p>
+                        Learn about Basotho history and the heritage
+                        of the mountain associated with King Moshoeshoe I.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <p id="noPlaces" class="alert alert-warning mt-4 d-none">
+        No destinations found. Try another search or category.
+    </p>
+</main>
+
+<footer>
+    <p>KHOTSO! PULA! NALA!</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const searchInput = document.getElementById("search");
+    const places = document.querySelectorAll(".place");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const noPlaces = document.getElementById("noPlaces");
+
+    let selectedCategory = "all";
+
+    function filterPlaces() {
+        const searchText = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        places.forEach(function(place) {
+            const name = place.dataset.name.toLowerCase();
+            const category = place.dataset.category;
+
+            const matchesSearch = name.includes(searchText);
+            const matchesCategory =
+                selectedCategory === "all" ||
+                category === selectedCategory;
+
+            if (matchesSearch && matchesCategory) {
+                place.classList.remove("d-none");
+                visibleCount++;
+            } else {
+                place.classList.add("d-none");
+            }
+        });
+
+        noPlaces.classList.toggle("d-none", visibleCount > 0);
+    }
+
+    searchInput.addEventListener("input", filterPlaces);
+
+    filterButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+            selectedCategory = button.dataset.filter;
+
+            filterButtons.forEach(function(btn) {
+                btn.classList.remove("btn-success");
+                btn.classList.add("btn-outline-success");
+            });
+
+            button.classList.remove("btn-outline-success");
+            button.classList.add("btn-success");
+
+            filterPlaces();
+        });
+    });
+</script>
+
+</body>
+</html>
+```
